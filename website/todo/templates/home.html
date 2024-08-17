@@ -17,7 +17,9 @@
         <br>
     {% endif %}
     {% if user.is_authenticated %}
-        <a> Todo Page </a>
+        <a href="{% url 'todo' %}"> 
+            Todo Page 
+        </a>
     {% endif %}
 </body>
 </html>
