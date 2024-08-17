@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+# importing logic from forms
+from .forms import UserCreationForm
 
 def home(request):
-    return render(request , "home.html")
+    context = {
+        'sign_up_form': UserCreationForm
+    }
+    return render(request , "home.html" , context = context)
