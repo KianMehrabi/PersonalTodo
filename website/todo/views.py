@@ -4,13 +4,14 @@ from django.shortcuts import render , redirect
 from .forms import *
 
 # for login stuff
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login as login_auth
 
 def home(request):
     
     return render(request , "home.html")
 
 def sign_up(request):
+    form = UserCreationForm()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid:
@@ -18,10 +19,8 @@ def sign_up(request):
             new_user = authenticate(username=form.cleaned_data['username'],
                                     password=form.cleaned_data['password1'],
                                     )
-            login(request, new_user)
+            login_auth(request, new_user)
             return redirect("home")
-    else:
-        form = UserCreationForm()
     return render(request , "signup.html" , context = {'sign_up_form': UserCreationForm} )
 
 def login(request):
@@ -35,7 +34,7 @@ def login(request):
             user = authenticate(request , username = username , password = password)
             
             if user is not None:
-                login(request , user)
+                login_auth(request , user)
                 
                 return redirect("home")
     return render(request , "login.html" , context = {'login_form': LoginForm} )

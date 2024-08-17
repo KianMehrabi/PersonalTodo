@@ -6,7 +6,17 @@
     <title> Home Page </title>
 </head>
 <body>
-    This is home page 
-    <br>
+    <h1>
+        This is the Home Page 
+    </h1>
+    <hr>
+    {% if user.is_authenticated %}
+        <a href="{% url 'login' %}">
+             Login Page 
+        </a>
+        <br>
+    {% endif %}
+    
+    <a> Todo Page </a>
 </body>
 </html>
