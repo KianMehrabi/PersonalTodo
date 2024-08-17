@@ -6,6 +6,9 @@ from .forms import *
 # for login stuff
 from django.contrib.auth import authenticate, login as login_auth
 
+# importing all the models classes
+from .models import *
+
 def home(request):
     
     return render(request , "home.html")
@@ -40,4 +43,4 @@ def login(request):
     return render(request , "login.html" , context = {'login_form': LoginForm} )
 
 def todo(request):
-    return render(request , "todo.html")
+    return render(request , "todo.html" , context={'todo': TodoObject})

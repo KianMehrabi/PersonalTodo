@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Sign Up Page </title>
+    <title> signup page  </title>
 </head>
 <body>
+    <h1>
+        this is signup page
+    </h1>
+    <hr>
     <form method="post">
         {% csrf_token %}
         {{ sign_up_form.as_p }}
