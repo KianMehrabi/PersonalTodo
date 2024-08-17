@@ -5,6 +5,8 @@ from .forms import *
 
 # for login stuff
 from django.contrib.auth import authenticate, login as login_auth
+from django.contrib.auth.decorators import login_required
+
 
 # importing all the models classes
 from .models import *
@@ -42,5 +44,9 @@ def login(request):
                 return redirect("home")
     return render(request , "login.html" , context = {'login_form': LoginForm} )
 
+
+@login_required(login_url="login")
 def todo(request):
-    return render(request , "todo.html" , context={'todo': TodoObject})
+    todo_item = TodoObject.objects.filter(user = request.user)
+    print(request.user)
+    return render(request , "todo.html" , context={'todos': todo_item})

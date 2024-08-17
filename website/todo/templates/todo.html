@@ -10,4 +10,13 @@
         This is todo page
     </h1>
     <hr>
+    {% if todos.count is not 0 %}
+        {% for todo in todos %}
+            <p> this was made by {{ todo.text }}</p>
+            <p> this is {{ todo.is_checked }}</p>
+            <hr>
+        {% endfor %}
+    {% else %}
+        <p>please create a todo!!</p>
+    {% endif %}
 </html>
