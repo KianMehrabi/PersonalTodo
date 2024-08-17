@@ -38,3 +38,6 @@ def login(request):
                 
                 return redirect("home")
     return render(request , "login.html" , context = {'login_form': LoginForm} )
+
+def todo(request):
+    return render(request , "todo.html")
