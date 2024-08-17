@@ -38,5 +38,4 @@ def login(request):
                 login(request , user)
                 
                 return redirect("home")
-    context = {'login_form': LoginForm}
-    return render(request , "login.html" , context = context )
+    return render(request , "login.html" , context = {'login_form': LoginForm} )
