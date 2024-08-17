@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+# importing my models
+from .models import TodoObject
+
+admin.site.register(TodoObject)
