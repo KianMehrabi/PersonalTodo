@@ -1,2 +1,2 @@
 # PersonalTodo
-my personal todo website with Django and React and MongoDB with some tasty django rest api integration
+my personal todo website with django and some tasty Bootstrap
