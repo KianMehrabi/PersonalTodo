@@ -9,4 +9,5 @@ urlpatterns = [
     path('signup/' , sign_up , name = "sign_up"),
     path('login/' , login , name = "login" ),
     path('todo/' , todo , name = "todo" ),
+    path('create_todo/' , create_todo , name = "create_todo" ),
 ]

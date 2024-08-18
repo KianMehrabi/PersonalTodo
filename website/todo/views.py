@@ -48,5 +48,17 @@ def login(request):
 @login_required(login_url="login")
 def todo(request):
     todo_item = TodoObject.objects.filter(user = request.user)
-    print(request.user)
     return render(request , "todo.html" , context={'todos': todo_item})
+
+@login_required(login_url="login")
+def create_todo(request):
+    if request.method == "POST":
+        form = TodoObjectForm(request.POST)
+        
+        if form.is_valid:
+            form.save()
+            return redirect("todo")
+    else:
+        form = TodoObjectForm()
+    
+    return render(request , "create_todo.html" , context = {'create_todo': form})
