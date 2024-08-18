@@ -13,8 +13,20 @@
     {% if todos.count is not 0 %}
         {% for todo in todos %}
             <p> {{ todo.text }}</p>
-            <p> this is {{ todo.is_checked }}</p>
+
+            {% if todo.is_checked ==  True %}
+                <p>
+                    done
+                </p>
+            {% else %}
+                <p>
+                    not done
+                </p>
+            {% endif %}
+
             <a href="{% url 'edit_todo' todo.id %}"> edit this object </a>
+            <br>
+            <a href="{% url 'delete_todo' todo.id %}"> delete this object </a>
             <hr>
         {% endfor %}
     {% else %}

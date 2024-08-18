@@ -90,10 +90,11 @@ def edit_todo(request , id):
     return render(request , "edit_todo.html" , context= {'edit_todo':form})
 
 @login_required
-def delete_todo(request):
-    return render(request , "delete_todo.html" , context= {})
-
-@login_required
-def delete_all_todo(request):
-    return render(request , "delete_all_todo.html" , context= {})
-
+def delete_todo(request , id):
+    todo_item = TodoObject.objects.get(id = id)
+    
+    if request.method == "POST":
+        todo_item.delete()
+        return redirect("todo")
+            
+    return render(request , "delete_todo.html" , context= {"todo": todo_item})
