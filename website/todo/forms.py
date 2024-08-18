@@ -20,4 +20,4 @@ class LoginForm(AuthenticationForm):
 class TodoObjectForm(forms.ModelForm):
     class Meta:
         model = TodoObject
-        fields = ["user" , "text" , "is_checked"]
+        fields = [ "text" , "is_checked"]

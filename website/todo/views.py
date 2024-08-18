@@ -55,8 +55,12 @@ def create_todo(request):
     if request.method == "POST":
         form = TodoObjectForm(request.POST)
         
+        
+        # this is agly i know but i didnt found any better solutions
         if form.is_valid:
-            form.save()
+            saved_form = form.save(commit=False)
+            saved_form.user = request.user
+            saved_form.save()
             return redirect("todo")
     else:
         form = TodoObjectForm()
