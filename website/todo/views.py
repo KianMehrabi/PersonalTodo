@@ -55,8 +55,7 @@ def create_todo(request):
     if request.method == "POST":
         form = TodoObjectForm(request.POST)
         
-        
-        # this is agly i know but i didnt found any better solutions
+        # saves the form but not commit and then after commit it would save it
         if form.is_valid:
             saved_form = form.save(commit=False)
             saved_form.user = request.user
@@ -66,3 +65,16 @@ def create_todo(request):
         form = TodoObjectForm()
     
     return render(request , "create_todo.html" , context = {'create_todo': form})
+
+@login_required
+def edit_todo(request):
+    return render(request , "edit_todo.html" , context= {})
+
+@login_required
+def delete_todo(request):
+    return render(request , "delete_todo.html" , context= {})
+
+@login_required
+def delete_all_todo(request):
+    return render(request , "delete_all_todo.html" , context= {})
+
