@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 
 # importing logic from forms
 from .forms import *
@@ -67,8 +67,27 @@ def create_todo(request):
     return render(request , "create_todo.html" , context = {'create_todo': form})
 
 @login_required
-def edit_todo(request):
-    return render(request , "edit_todo.html" , context= {})
+def edit_todo(request , id):
+    instance = get_object_or_404(TodoObject , id = id)
+    form = TodoObjectForm(instance = instance)
+    
+    if request.method == "POST":
+        
+        form = TodoObjectForm(request.POST)
+        if form.is_valid:
+            form_object = TodoObject.objects.get(id = id)
+            form_object.user = request.user
+            form_object.text = request.POST.get("text")
+            if request.POST.get("is_checked") == "on":
+                form_object.is_checked = True
+            else:
+                form_object.is_checked = False
+            form_object.save()
+            return redirect("todo")
+        
+        
+    
+    return render(request , "edit_todo.html" , context= {'edit_todo':form})
 
 @login_required
 def delete_todo(request):

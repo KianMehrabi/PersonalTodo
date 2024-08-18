@@ -6,6 +6,16 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>
+        This is Edit Todo page
+    </h1>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ edit_todo.as_p }}
+        <button type="submit">
+            click me
+        </button>
+    </form>
 </body>
 </html>

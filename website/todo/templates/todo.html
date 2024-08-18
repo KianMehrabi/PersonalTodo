@@ -12,8 +12,9 @@
     <hr>
     {% if todos.count is not 0 %}
         {% for todo in todos %}
-            <p> this was made by {{ todo.text }}</p>
+            <p> {{ todo.text }}</p>
             <p> this is {{ todo.is_checked }}</p>
+            <a href="{% url 'edit_todo' todo.id %}"> edit this object </a>
             <hr>
         {% endfor %}
     {% else %}
